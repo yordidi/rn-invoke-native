@@ -90,15 +90,18 @@ public class ReactNativeModule extends ReactContextBaseJavaModule {
     public void sendDataWithCallback(ReadableArray readableArray, Callback callback) {
         try {
             Log.d(TAG, "sendDataWithCallback: ");
-            JSONArray jsonArray = toJSONArray(readableArray);
-            Object[] objects = toArray(jsonArray);
+            // toArray重载方法，参数类型不同，第一个借用了JSONArray,第二个用原始方法。从结果上看JSONArray会把
+            // 数字1转化成1.0，其它没什么区别。核心是枚举ReadableArray，然后获取类型，分别处理。
+            // JSONArray jsonArray = toJSONArray(readableArray);
+            // Object[] objects = toArray(jsonArray);
+            Object[] objects = toArray(readableArray);
             for (Object obj: objects) {
                 Log.d(TAG, "objects: " + obj);
             }
             WritableArray writableArray = toWritableArray(objects);
             Toast.makeText(mContext, "success", Toast.LENGTH_LONG).show();
-            callback.invoke(null, writableArray);
-        } catch (IllegalViewOperationException | JSONException e) {
+            callback.invoke(null, writableArray, "extra data");
+        } catch (IllegalViewOperationException e) {
             callback.invoke(e.getMessage(), "error data from android");
         }
 
@@ -107,13 +110,16 @@ public class ReactNativeModule extends ReactContextBaseJavaModule {
     @ReactMethod
     public void sendDataWithPromise(ReadableMap readableMap, Promise promise) {
         try {
-            JSONObject jsonObject = toJSONObject(readableMap);
-            Map<String, Object> map = toMap(jsonObject);
+            // toMap重载的第二个方法，反而可以显示null，感觉更靠谱一点。其实影响不如Array那么大，因为对于Object，
+            // js可以用可选操作符兼容处理。
+            // JSONObject jsonObject = toJSONObject(readableMap);
+            // Map<String, Object> map = toMap(jsonObject);
+            Map<String, Object> map = toMap(readableMap);
             WritableMap writableMap = toWritableMap(map);
 
             Toast.makeText(mContext, "success", Toast.LENGTH_LONG).show();
             promise.resolve(writableMap);
-        } catch (IllegalViewOperationException | JSONException e) {
+        } catch (IllegalViewOperationException e) {
             promise.reject("-1", e);
         }
 

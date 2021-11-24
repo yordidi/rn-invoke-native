@@ -40,6 +40,8 @@ import {
   sendDataWithPromise,
 } from './src/sendDataWithCb.android';
 
+import {registerNativeMethod} from './src/androidMethodRegister';
+
 const Section = ({children, title}): Node => {
   const isDarkMode = useColorScheme() === 'dark';
   return (
@@ -72,6 +74,19 @@ const App: () => Node = () => {
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
+
+  function handlePress() {
+    registerNativeMethod(
+      'ReactNativeModule',
+      'sendDataWithPromise',
+      'object',
+      'string',
+    )('hello')
+      .then(res => console.log('res', res))
+      .catch(e => {
+        console.log('e :>> ', e);
+      });
+  }
 
   return (
     <SafeAreaView style={backgroundStyle}>
@@ -134,6 +149,13 @@ const App: () => Node = () => {
                 onPress={() => sendDataWithPromise()}>
                 <View style={styles.button}>
                   <Text>sendDataWithPromise</Text>
+                </View>
+              </TouchableHighlight>
+              <TouchableHighlight
+                style={styles.buttonContainer}
+                onPress={handlePress}>
+                <View style={styles.button}>
+                  <Text>sendData with a adapter and promise</Text>
                 </View>
               </TouchableHighlight>
             </View>

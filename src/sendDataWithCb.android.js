@@ -7,19 +7,20 @@ export const sendDataWithCallback = params => {
   const moduleName = 'ReactNativeModule';
   const methodName = 'sendDataWithCallback';
   const api = NativeModules?.[moduleName]?.[methodName];
-  //   const invokeParams = [1, 2, 3, 4]  // ["1.0", "2.0", "3.0", "4.0"]
-  //   const invokeParams = [1, '2', 'abc', false, null, undefined]; // ["1.0", "2", "abc", "false", "null", "null"]
+  // const invokeParams = [1, 2, 3, 4]  // ["1.0", "2.0", "3.0", "4.0"]
+  // const invokeParams = [1, '2', 'abc', false, null, undefined]; // ["1.0", "2", "abc", "false", "null", "null"]
   //   const invokeParams = [null, undefined, [1]]; // ["null", "null", "[1.0]"]  此时Android端用的是WriteableArray.putString方法
-  //   const invokeParams = [false, 1, '3', [1]]; //用ArrayUtil之后，[false, 1, "3", [1]]
-  //   const invokeParams = [1, '2', {name: 'welcom'}]; // [1, "2", {"name": "welcom"}]
+  // const invokeParams = [false, 1, '3', [1]]; //用ArrayUtil之后，[false, 1, "3", [1]]
+  // const invokeParams = [1, '2', {name: 'welcom'}]; // [1, "2", {"name": "welcom"}]
   //   const invokeParams = ['2', {name: 'welcom'}, undefined]; // ["2", {"name": "welcom"}, null]
-  //   const invokeParams = [null, {name: 'welcom'}, undefined, {key: {an: 'yes'}}]; // [null, {"name": "welcom"}, null, {"key": {"an": "yes"}}]
-  const invokeParams = 'error data type'; // 红屏
+  const invokeParams = [null, {name: 'welcom'}, undefined, {key: {an: 'yes'}}]; // [null, {"name": "welcom"}, null, {"key": {"an": "yes"}}]
+  //   const invokeParams = 'error data type'; // 红屏
 
   if (typeof api === 'function') {
-    api(invokeParams, (err, data) => {
+    api(invokeParams, (err, data, ...args) => {
       if (!err) {
         console.log('data :>> ', data);
+        console.log('args :>> ', args);
       } else {
         console.log('err :>> ', err);
       }
@@ -42,7 +43,7 @@ export const sendDataWithPromise = params => {
   //   }; // {"author": {"desc": "from Star", "name": "jim"}, "book": {"bookName": "humem"}}
   const invokeParams = {
     book: {bookName: undefined, age: 18, has: false, follows: [1, '2', true]},
-    author: {name: null, desc: 'from Star'},
+    author: {name: null, desc: 'from Star', blank: ''},
   }; // {"author": {"desc": "from Star"}, "book": {"age": 18, "follows": [1, "2", true], "has": false}} 。。。 undefined和null给抹掉了
   if (typeof api === 'function') {
     // try {
