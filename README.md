@@ -15,9 +15,15 @@ RN 与 Android交互
 之前，RN端必须检测参数类型，参数不合法不能调用。所以RN端最好去封装这个功能。参见androidMethodRegister.js，此时RN调用Android方法
 应该封装完成了。而Android侧，我觉得没必要封装了，官方封装的已经可以了。
 8) 完美适配方案参见androidMethodRegister.js。Native端Array、Object类型的处理也OK了。一般给RN回传的数据封装成WritableArray、WritableMap，再通过Promise.resolve传递回去即可。
-
+9) 跨语言通信，只能通过约定。例如可以暴露一个常量进行约定。所以没办法利用一个根本上杜绝参数类型错误，就像前后端通信通过约定content-type一样。对于rn与android，最好是只有ReadableMap，即json进行通信。
+10）不知道rn的Error能不能捕获到这种错误？？？
 
 2、 Android 调 RN方法
+1）通过一个module调用emit(eventName, params)调用rn的方法
+2）通过一个常量来约定event name
+3) 如果rn端没有监听相关event呢？
+4）回传数据的形式倒不必担心
+5) 不过Android在什么情况下会调用RN，给RN传数据呢？
 
 3、 RN 调用 Android UI Component
 

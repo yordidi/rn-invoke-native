@@ -108,7 +108,7 @@ public class ReactNativeModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void sendDataWithPromise(ReadableMap readableMap, Promise promise) {
+    public void sendDataWithPromise(ReadableMap readableMap, Promise promise) throws Exception {
         try {
             // toMap重载的第二个方法，反而可以显示null，感觉更靠谱一点。其实影响不如Array那么大，因为对于Object，
             // js可以用可选操作符兼容处理。

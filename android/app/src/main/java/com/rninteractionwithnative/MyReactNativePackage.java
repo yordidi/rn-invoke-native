@@ -18,6 +18,7 @@ public class MyReactNativePackage implements com.facebook.react.ReactPackage {
     public List<NativeModule> createNativeModules(@NonNull @NotNull ReactApplicationContext reactContext) {
         List<NativeModule> list = new ArrayList<>();
         list.add(new ReactNativeModule(reactContext));
+        list.add(new ReactEventEmitterModule(reactContext));
         return list;
     }
 
