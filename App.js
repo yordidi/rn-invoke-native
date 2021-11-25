@@ -6,7 +6,7 @@
  * @flow strict-local
  */
 
-import React, {useState} from 'react';
+import React from 'react';
 import type {Node} from 'react';
 import {
   SafeAreaView,
@@ -39,6 +39,11 @@ import {
   sendDataWithCallback,
   sendDataWithPromise,
 } from './src/sendDataWithCb.android';
+
+import {
+  openActivityWithName,
+  openActivityWithNameAndResult,
+} from './src/openActivity.android';
 
 import {registerNativeMethod} from './src/androidMethodRegister';
 
@@ -99,7 +104,7 @@ const App: () => Node = () => {
           style={{
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
           }}>
-          <Section title="invoke android apis">
+          <Section title="Native Modules">
             <View style={styles.container}>
               <TouchableHighlight
                 style={styles.buttonContainer}
@@ -158,7 +163,24 @@ const App: () => Node = () => {
                   <Text>sendData with a adapter and promise</Text>
                 </View>
               </TouchableHighlight>
+              <TouchableHighlight
+                style={styles.buttonContainer}
+                onPress={() => openActivityWithName()}>
+                <View style={styles.button}>
+                  <Text>openActivityWithName</Text>
+                </View>
+              </TouchableHighlight>
+              <TouchableHighlight
+                style={styles.buttonContainer}
+                onPress={() => openActivityWithNameAndResult()}>
+                <View style={styles.button}>
+                  <Text>openActivityWithNameAndResult</Text>
+                </View>
+              </TouchableHighlight>
             </View>
+          </Section>
+          <Section title="Native Components">
+            <View style={styles.container} />
           </Section>
           <Section title="See Your Changes" />
           <Section title="Debug" />

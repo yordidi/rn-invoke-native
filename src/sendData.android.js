@@ -22,6 +22,7 @@ const rnModuleAdapter = (methodName, params) => {
  * https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Data_structures
  * String、Number、BigInt、Boolean、Symbol、undefined、null
  * Object
+ * Symbol的值作为对象属性的标识符，这是该数据类型仅有的目的。https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Symbol
  */
 
 /**
