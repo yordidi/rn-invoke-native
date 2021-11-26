@@ -13,6 +13,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.HashMap;
 import java.util.Map;
 
+
 public class ReactEventEmitterModule extends ReactContextBaseJavaModule {
     private final ReactApplicationContext mReactContext;
     private final String SUCCESSEVENT = "SUCCESSEVENT";
@@ -38,6 +39,9 @@ public class ReactEventEmitterModule extends ReactContextBaseJavaModule {
         return map;
     }
 
+    /**
+     * 一般的Event Emit 只要应用ReactContext就够了，但是监听Activity生命周期需要实现LifeCycle，参见ReactActivityLifecycleModule.java
+     */
     public void sendMsgToRN(String eventName, WritableArray writableArray) {
         mReactContext.getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class).emit(eventName, writableArray);
     }

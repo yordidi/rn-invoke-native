@@ -6,7 +6,7 @@
  * @flow strict-local
  */
 
-import React from 'react';
+import React, {useEffect} from 'react';
 import type {Node} from 'react';
 import {
   SafeAreaView,
@@ -17,6 +17,8 @@ import {
   TouchableHighlight,
   useColorScheme,
   View,
+  NativeModules,
+  NativeEventEmitter,
 } from 'react-native';
 
 import {
@@ -46,6 +48,7 @@ import {
 } from './src/openActivity.android';
 
 import {registerNativeMethod} from './src/androidMethodRegister';
+import {invokeNative, eventEmitter} from './src/addListenNativeEvent';
 
 const Section = ({children, title}): Node => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -79,6 +82,17 @@ const App: () => Node = () => {
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
+
+  useEffect(() => {
+    // eventEmitter的warn，是新版RN引起的，可以选择关闭：https://stackoverflow.com/questions/69538962/new-nativeeventemitter-was-called-with-a-non-null-argument-without-the-requir
+    const listener = eventEmitter.addListener('push', msg =>
+      console.log('msg>>>>', msg),
+    );
+
+    return () => {
+      listener.remove();
+    };
+  }, []);
 
   function handlePress() {
     registerNativeMethod(
@@ -175,6 +189,13 @@ const App: () => Node = () => {
                 onPress={() => openActivityWithNameAndResult()}>
                 <View style={styles.button}>
                   <Text>openActivityWithNameAndResult</Text>
+                </View>
+              </TouchableHighlight>
+              <TouchableHighlight
+                style={styles.buttonContainer}
+                onPress={() => invokeNative()}>
+                <View style={styles.button}>
+                  <Text>invokeNative</Text>
                 </View>
               </TouchableHighlight>
             </View>

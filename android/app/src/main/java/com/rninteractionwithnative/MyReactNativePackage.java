@@ -20,6 +20,7 @@ public class MyReactNativePackage implements com.facebook.react.ReactPackage {
         list.add(new ReactNativeModule(reactContext));
         list.add(new ReactEventEmitterModule(reactContext));
         list.add(new ReactOpenActivityModule(reactContext));
+        list.add(new ReactActivityLifecycleModule(reactContext));
         return list;
     }
 

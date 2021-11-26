@@ -21,14 +21,18 @@ RN 与 Android交互
 ### 2021.11.25
 11) RN打开一个Android Activity。包括有返回值和无返回值的。以及各种数据类型
 12） Java 字符串比较，map遍历、删除
-13） Android 兼容 RN
+13） Android 兼容 RN   
+The minCompileSdk (31) specified in a dependency’s AAR metadata is greater than this module’s compileSdkVersion ：https://exerror.com/the-mincompilesdk-31-specified-in-a-dependencys-aar-metadata-is-greater-than-this-modules-compilesdkversion/
+14）RN如果可以访问原生代码的话，可以实现更高的复用性，以及做一些RN做不到的事情，如多线程图片处理、访问数据库等。
+15）RN bridge是异步的
+16）RN监听activity生命周期 　模块实现LifecycleEventListener，在模块的构造器中注册。因为以上生命周期可能执行多次，所以不要把JS的回调函数放到里面来执行，因为JS传递进来的回调函数只能执行一次，可以在里面往JS传递事件。监听的应该是自己的Activity的生命周期
 
 2、 Android 调 RN方法
 1）通过一个module调用emit(eventName, params)调用rn的方法
 2）通过一个常量来约定event name
 3) 如果rn端没有监听相关event呢？
 4）回传数据的形式倒不必担心
-5) 不过Android在什么情况下会调用RN，给RN传数据呢？
+5) 不过Android在什么情况下会调用RN，给RN传数据呢？例如监听Activity生命周期钩子
 
 ### 2021.11.26
 1）Android Activity 打开一个 rn页面

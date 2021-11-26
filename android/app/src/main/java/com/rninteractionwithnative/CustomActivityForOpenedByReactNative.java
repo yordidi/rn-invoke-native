@@ -7,6 +7,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.facebook.react.bridge.ReactMethod;
+
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -56,13 +58,9 @@ public class CustomActivityForOpenedByReactNative extends AppCompatActivity {
         // 因为调用了setResult 和 finish，因此需要把父类的方法注释掉
         // super.onBackPressed();
         Intent intent = new Intent();
-        for (String key :
-                map.keySet()) {
-            Log.d(TAG, "onBackPressed: key is " + key);
+        if (map != null) {
+            intent.putExtra("dataBackFromActivity", (Serializable) map);
         }
-        intent.putExtra("dataBackFromActivity", (Serializable) map);
-//        intent.putExtra("dataBackFromActivity", "(Serializable) map");
-
         setResult(RESULT_OK, intent);
         finish();
     }

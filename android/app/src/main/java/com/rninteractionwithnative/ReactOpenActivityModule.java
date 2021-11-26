@@ -58,6 +58,7 @@ public class ReactOpenActivityModule extends ReactContextBaseJavaModule {
 
             mPromise = null;
         }
+
     };
     
     public ReactOpenActivityModule(@Nullable @org.jetbrains.annotations.Nullable ReactApplicationContext reactContext) {
