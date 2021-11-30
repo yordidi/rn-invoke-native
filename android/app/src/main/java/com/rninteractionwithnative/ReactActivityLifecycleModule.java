@@ -52,6 +52,7 @@ public class ReactActivityLifecycleModule extends ReactContextBaseJavaModule imp
     @Override
     public void onHostDestroy() {
         Log.d(TAG, "onHostDestroy: ");
+        sendEventToRN("push", "onHostDestroy");
 
     }
     @ReactMethod
