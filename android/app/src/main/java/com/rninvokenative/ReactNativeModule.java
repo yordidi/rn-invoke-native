@@ -1,4 +1,4 @@
-package com.rninteractionwithnative;
+package com.rninvokenative;
 
 import android.util.Log;
 import android.widget.Toast;
@@ -27,12 +27,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.rninteractionwithnative.ArrayUtil.toArray;
-import static com.rninteractionwithnative.ArrayUtil.toJSONArray;
-import static com.rninteractionwithnative.ArrayUtil.toWritableArray;
-import static com.rninteractionwithnative.MapUtil.toJSONObject;
-import static com.rninteractionwithnative.MapUtil.toMap;
-import static com.rninteractionwithnative.MapUtil.toWritableMap;
+import static com.rninvokenative.ArrayUtil.toArray;
+import static com.rninvokenative.ArrayUtil.toJSONArray;
+import static com.rninvokenative.ArrayUtil.toWritableArray;
+import static com.rninvokenative.MapUtil.toJSONObject;
+import static com.rninvokenative.MapUtil.toMap;
+import static com.rninvokenative.MapUtil.toWritableMap;
 
 public class ReactNativeModule extends ReactContextBaseJavaModule {
     private static final String TAG = "ReactNativeModule";

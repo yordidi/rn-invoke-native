@@ -132,7 +132,7 @@ android {
 //    compileSdkVersion rootProject.ext.compileSdkVersion
 
     defaultConfig {
-        applicationId "com.rninteractionwithnative"
+        applicationId "com.rninvokenative"
         minSdkVersion rootProject.ext.minSdkVersion
 
         targetSdkVersion 31

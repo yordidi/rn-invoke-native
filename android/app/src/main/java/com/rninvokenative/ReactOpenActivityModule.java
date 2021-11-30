@@ -1,4 +1,4 @@
-package com.rninteractionwithnative;
+package com.rninvokenative;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -26,8 +26,8 @@ import java.util.Iterator;
 import java.util.Map;
 
 import static android.app.Activity.RESULT_OK;
-import static com.rninteractionwithnative.MapUtil.toMap;
-import static com.rninteractionwithnative.MapUtil.toWritableMap;
+import static com.rninvokenative.MapUtil.toMap;
+import static com.rninvokenative.MapUtil.toWritableMap;
 
 public class ReactOpenActivityModule extends ReactContextBaseJavaModule {
     private Promise mPromise;
@@ -88,7 +88,7 @@ public class ReactOpenActivityModule extends ReactContextBaseJavaModule {
                 promise.reject("-1", "post a null activityName");
                 return;
             }
-            String activityName = "com.rninteractionwithnative." + (String) map.get("activityName");
+            String activityName = "com.rninvokenative." + (String) map.get("activityName");
 
             Intent intent = new Intent(getCurrentActivity(), Class.forName(activityName));
 
@@ -132,7 +132,7 @@ public class ReactOpenActivityModule extends ReactContextBaseJavaModule {
                 promise.reject("-1", "post a null activityName");
                 return;
             }
-            String activityName = "com.rninteractionwithnative." + (String) map.get("activityName");
+            String activityName = "com.rninvokenative." + (String) map.get("activityName");
 
             Intent intent = new Intent(getCurrentActivity(), Class.forName(activityName));
 

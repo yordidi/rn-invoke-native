@@ -1,4 +1,4 @@
-package com.rninteractionwithnative;
+package com.rninvokenative;
 
 import androidx.appcompat.app.AppCompatActivity;
 

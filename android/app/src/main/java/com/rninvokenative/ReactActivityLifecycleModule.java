@@ -1,4 +1,4 @@
-package com.rninteractionwithnative;
+package com.rninvokenative;
 
 import android.app.Activity;
 import android.content.Intent;
