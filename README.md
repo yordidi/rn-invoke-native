@@ -41,5 +41,8 @@ Native传递数据给RN倒不用像RN给Native那样谨慎，因为JS的回调�
 1. RN调用Android处理系统交互
 2. RN调用Android开启多线程？
 
+### 五、多线程AsyncTask
+[Android原生模块](https://reactnative.cn/docs/native-modules-android)
+
 ### 参考
 https://github.com/ipk2015/RN-Resource-ipk/blob/master/react-native-docs/RN%E4%B9%8BAndroid:%E5%8E%9F%E7%94%9F%E7%95%8C%E9%9D%A2%E4%B8%8EReact%E7%95%8C%E9%9D%A2%E7%9A%84%E7%9B%B8%E4%BA%92%E8%B0%83%E7%94%A8%E5%8F%8A%E6%95%B0%E6%8D%AE%E4%BC%A0%E9%80%92.md
